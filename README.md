@@ -33,7 +33,7 @@ version: '3.8'
 services:
   zurl:
     container_name: zurl
-    image: helloz/zurl
+    image: beeseek/zurl
     ports:
       - "3080:3080"
     restart: always
@@ -42,6 +42,38 @@ services:
 ```
 
 输入`docker-compose up -d`启动，然后访问`http://IP:3080` 根据提示完成初始化！
+
+## 升级
+
+1.使用 Docker Compose 停止服务：
+
+```
+docker-compose down
+
+```
+
+2.拉取最新镜像
+
+Zurl 的镜像beeseek/zurl更新后，需拉取最新版本：
+
+```
+docker-compose pull
+
+```
+3.重新启动服务
+
+使用新镜像启动容器，挂载的./data目录会自动复用（保留原有数据和配置）：
+
+```
+docker-compose up -d
+
+```
+
+4.验证升级结果
+
+访问http://IP:3080，确认服务正常启动。
+
+登录管理员后台，检查数据（短链接、配置等）是否完整。
 
 ## 设置
 
